@@ -1,0 +1,79 @@
+#성격유형
+# def solution(survey, choices):
+#     answer = ''
+#     point = [0, -3, -2, -1, 0, 1, 2, 3]
+#     type = {"RT":0, "CF":0, "JM":0, "AN": 0}
+#     for i in range(len(survey)):
+#         if survey[i] not in type:
+#             type[survey[i][::-1]] += -point[choices[i]]
+#         else:
+#             type[survey[i]] += point[choices[i]]
+#
+#     for j in type:
+#         if type[j] <= 0:
+#             answer += j[0]
+#         else:
+#             answer +=j[1]
+#     return answer
+# survey = ["AN", "CF", "MJ", "RT", "NA"]
+# choices = [5, 3, 2, 7, 5]
+# print(solution(survey, choices))
+
+
+
+
+#야구 게임
+#난수 만들기
+#난수 = 랜덤 숫자
+
+# import random
+#
+# # 로또 = 1 ~ 45까지 정수값 중에 6개를 선택해서 맞춘다. 중복 X
+#
+# lotto = []
+#                             #
+# while len(lotto) <= 5:     #/
+#     number = random.randint(1,45)
+#     if number not in lotto:
+#         lotto.append(number)
+# lotto.sort
+# print(lotto)
+#룰1: 무작위 정수 3개를 정답으로 선언한다.(단, 중복은 없도록)
+#룰2: 매 턴 마다 정수 3개를 입력하고 비교한다.
+#룰3: 입력한 수가 존재하며, 자리도 같다면 STRIKE
+#룰4: 존재는 하지만 자리가 다르면 BALL
+# #게임 실행
+#       #1. 정수 3개를 입력받는다. 입력형태 => 3 1 2    띄어쓰기롤 구분지어준다.
+#       #2. 정답하고 입력받은 정수 3개를 비교한다.
+#       #   2-1) 정수가 포함되어있는지 확인 => 포함되어 있지 않을 경우 Foul 출력
+#       #   2-2) 정수가 포함이 되어있다면:
+#                #포함되어 있는 개수만큼 Ball의 개수 증가
+#                #포함되어있고 자리도 같을 경우 Ball의 개수를 줄이고
+#                #Strike의 개수를 증가
+#                #Ball: x개   Strike: y개 출력
+#       #3. answer와 내가 입력한 정수가 완전희 같을경우
+#       #You Win!이라고 출력후 게임 종료
+import random
+
+answer = []
+
+while len(answer) < 3:
+    number = random.randint(0,9)
+    if number not in answer:
+        answer.append(number)
+
+
+cnt = 10
+#게임실행
+while True:
+    guess = input().split()
+    for i in range(len(guess)):
+        guess[i] = int(guess[i])
+    print("남은 시도: %d" %cnt)
+    cnt -= 1
+    if cnt == 0:          #시도횟수가 다 소진되면 게임 종료
+        print("YOU LOSE")
+        print("정답은: ", answer)
+        exit()
+    if answer == guess:
+        print("YOU WIN!")
